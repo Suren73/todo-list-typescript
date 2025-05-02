@@ -1,16 +1,24 @@
-import { Todo, TodoListProps } from '../../App'
+import { Todo } from '../../App'
 import styles from './TodoItem.module.css'
 
-export function TodoItem({ todos }: TodoListProps) {
+export const TodoItem = ({ todos }) => {
 	return (
 		<>
-			{todos.map(function (todo: Todo) {
-				return (
-					<li key={todo.id} className={styles.item}>
-						{todo.title}
-					</li>
-				)
-			})}
+			{todos.map((todo: Todo) => (
+				<li key={todo.id} className={styles.item}>
+					<div>
+						<input
+							type='checkbox'
+							className={styles.checkbox}
+							checked={todo.completed}
+							id={`checkbox-${todo.id}`}
+							readOnly
+						/>
+						<label htmlFor={`checkbox-${todo.id}`} />
+					</div>
+					<span>{todo.title}</span>
+				</li>
+			))}
 		</>
 	)
 }

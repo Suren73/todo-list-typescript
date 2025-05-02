@@ -1,3 +1,5 @@
+/** Item */
+
 .item {
 	padding: 1.5rem;
 	counter-increment: todo-counter;
@@ -5,7 +7,15 @@
 	color: #333;
 	border-bottom: 1px solid #eee;
 	display: flex;
+	gap: 16px;
 	align-items: center;
+	margin: 8px 0;
+	background: #f8f9fa;
+	border-radius: 8px;
+	transition: background 0.3s ease;
+}
+.item:hover {
+	background: #e9ecef;
 }
 
 .item:last-child {
@@ -15,8 +25,8 @@
 .item::before {
 	content: counter(todo-counter);
 	margin-right: 1rem;
-	width: 30px;
-	height: 30px;
+	width: 35px;
+	height: 35px;
 	background-color: #3498db;
 	color: white;
 	border-radius: 50%;
@@ -24,4 +34,84 @@
 	align-items: center;
 	justify-content: center;
 	flex-shrink: 0;
+}
+
+/* Контейнер для чекбокса */
+.item > div {
+	display: flex;
+	align-items: center; /* Выравниваем чекбокс по центру */
+	min-width: 20px; /* Фиксируем минимальную ширину */
+}
+
+/* Стили для текста задачи */
+.item > span {
+	flex-grow: 1; /* Занимаем всё доступное пространство */
+	word-break: break-word; /* Корректный перенос слов */
+	padding-right: 10px;
+	text-align: left;
+}
+
+/* Скрываем оригинальный чекбокс */
+.checkbox {
+	position: relative;
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	opacity: 0;
+}
+
+/* Кастомный чекбокс */
+.checkbox + label {
+	position: relative;
+	cursor: pointer;
+	padding-left: 30px;
+}
+
+.checkbox + label:before {
+	content: '';
+	position: absolute;
+	left: -25px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 20px;
+	height: 20px;
+	border: 2px solid #4a90e2;
+	border-radius: 5px;
+	background: white;
+	transition: all 0.3s ease;
+}
+
+/* Галочка (скрыта по умолчанию) */
+.checkbox + label:after {
+	content: '';
+	position: absolute;
+	left: -20px;
+	top: 45%;
+	transform: translateY(-60%) translateX(2px) rotate(45deg);
+	width: 6px;
+	height: 12px;
+	border: solid white;
+	border-width: 0 2px 2px 0;
+	opacity: 0;
+	transition: all 0.3s ease;
+	-webkit-transform: translateY(-60%) translateX(2px) rotate(45deg);
+	-moz-transform: translateY(-60%) translateX(2px) rotate(45deg);
+	-ms-transform: translateY(-60%) translateX(2px) rotate(45deg);
+	-o-transform: translateY(-60%) translateX(2px) rotate(45deg);
+}
+
+/* Состояние checked */
+.checkbox:checked + label:before {
+	background: #4a90e2;
+	border-color: #4a90e2;
+}
+
+.checkbox:checked + label:after {
+	opacity: 1;
+	left: -18px;
+}
+
+/* Фокус состояние */
+.checkbox:focus + label:before {
+	box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
 }

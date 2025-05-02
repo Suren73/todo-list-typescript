@@ -1,1 +1,1 @@
-export const API_URL: string = 'https://jsonplaceholder.typicode.com/todos'
+export const API_URL = 'https://jsonplaceholder.typicode.com/todos'
